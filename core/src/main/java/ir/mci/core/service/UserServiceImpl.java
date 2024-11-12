@@ -1,5 +1,5 @@
 package ir.mci.core.service;
-import ir.mci.core.model.User;
+import ir.mci.core.model.UserDto;
 import ir.mci.core.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,11 +13,11 @@ public class UserServiceImpl implements UserService  {
     public UserServiceImpl() {
     }
     @Override
-    public Optional<User> list(String username) {
+    public Optional<UserDto> list(String username) {
        return userRepository.findById(username);
     }
     @Override
-    public void save(User user) {
-         userRepository.save(user);
+    public void save(UserDto userDto) {
+         userRepository.save(userDto);
     }
 }

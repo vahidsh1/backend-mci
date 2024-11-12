@@ -5,12 +5,14 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "USERS4")
-public class User {
+@Table(name = "USERS")
+public class UserDto {
     @Id
     @Column(name ="USERNAME")
     String username;
@@ -50,8 +52,15 @@ public class User {
     String tel;
     @Column(name ="LANDINE_PHONE")
     String land_phone;
-    @Column(name ="STATUS")
-    String status;
+    @Column(name ="ENABLED")
+    String enabled;
     @Column(name ="VIEW6")
     String view6;
-}
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "user_authorities",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "authority_id")
+
+    )
+    private List<Authority> authorities;}
