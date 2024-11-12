@@ -1,4 +1,4 @@
-package ir.mci.core.api;
+package ir.mci.core.conroller;
 
 import static org.springframework.http.HttpStatus.OK;
 
@@ -12,11 +12,11 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping(value = "/info", consumes = "application/json", produces = "application/json")
-public class LoginController {
+public class Controller {
 
     private final UserServiceImpl userServiceImpl;
 
-    public LoginController(UserServiceImpl userServiceImpl) {
+    public Controller(UserServiceImpl userServiceImpl) {
         this.userServiceImpl = userServiceImpl;
     }
 
@@ -40,6 +40,7 @@ public class LoginController {
     @PostMapping("/saveuser")
     public ResponseEntity<String> saveUser (@RequestBody User user) {
         userServiceImpl.save(user);
+        System.out.println(user.toString());
         String jsonResponse = "{\"message\": \"user added\"}";
         return ResponseEntity.status(OK).body(jsonResponse);
 
